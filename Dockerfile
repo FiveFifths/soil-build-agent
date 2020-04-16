@@ -31,7 +31,7 @@ RUN apt-get update && \
                         docker-ce-cli=5:19.03.3~3-0~ubuntu-bionic \
                         containerd.io=1.2.6-3 \
                         systemd && \
-    apt-get xauth xvfb wkhtmltopdf && \
+    apt-get install -y xauth xvfb wkhtmltopdf && \
     systemctl disable docker && \
     curl -SL "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && \
     \
