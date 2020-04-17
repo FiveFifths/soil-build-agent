@@ -17,7 +17,9 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=true \
     NUGET_XMLDOC_MODE=skip \
     GIT_SSH_VARIANT=ssh \
     # Install .NET Core SDK
-    DOTNET_SDK_VERSION=3.1.100
+    DOTNET_SDK_VERSION=2.1.801 \
+    TZ=Australia/Melbourne \
+    DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y git mercurial apt-transport-https ca-certificates software-properties-common && \
@@ -32,6 +34,8 @@ RUN apt-get update && \
                         containerd.io=1.2.6-3 \
                         systemd && \
     apt-get install -y xauth xvfb wkhtmltopdf && \
+    apt-get install -y awscli && \
+    apt-get install -y p7zip-full && \
     systemctl disable docker && \
     curl -SL "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && \
     \
@@ -60,8 +64,6 @@ RUN apt-get update && \
 
 # A better fix for TW-52939 Dockerfile build fails because of aufs
 VOLUME /var/lib/docker
-
-COPY run-docker.sh /services/run-docker.sh
 
 # Trigger .NET CLI first run experience by running arbitrary cmd to populate local package cache
 RUN dotnet help
