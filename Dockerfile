@@ -17,7 +17,7 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=true \
     NUGET_XMLDOC_MODE=skip \
     GIT_SSH_VARIANT=ssh \
     # Install .NET Core SDK
-    DOTNET_SDK_VERSION=2.1.801 \
+    DOTNET_SDK_VERSION=3.1.301 \
     TZ=Australia/Melbourne \
     DEBIAN_FRONTEND=noninteractive
 
